@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechAvokado - Kompüterlər və Aksessuarlar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo"> TechAvokado</div>
+        <nav>
+            <a href="#home" class="active">Ana Səhifə</a>
+            <a href="#products">Məhsullar</a>
+            <a href="#" id="nav-cart">Səbət <span class="badge" id="cart-count">0</span></a>
+            <a href="#" id="nav-favorites">Sevimlilər <span class="badge" id="fav-count">0</span></a>
+            <a href="#contact">Əlaqə</a>
+        </nav>
+        <div class="mobile-menu-btn" id="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>TechAvokado</h1>
+            <p>Kompüterlər və aksessuarlar üçün ünvanınız</p>
+            <button onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
+                İndi Alış-veriş Et
+            </button>
+        </div>
+    </section>
+
+    <!-- Controls: Search & Filter -->
+    <section class="controls">
+        <input type="text" id="search" placeholder="Məhsul axtar...">
+        <select id="category-filter">
+            <option value="all">Bütün Kateqoriyalar</option>
+            <option value="laptop">Noutbuklar</option>
+            <option value="mouse">Siçanlar</option>
+            <option value="keyboard">Klaviaturalar</option>
+            <option value="monitor">Monitorlar</option>
+            <option value="headset">Qulaqlıqlar</option>
+            <option value="accessory">Aksessuarlar</option>
+        </select>
+    </section>
+
+    <!-- Products Grid -->
+    <section id="products" class="products-section">
+        <h2>Məhsullarımız</h2>
+        <div id="product-list" class="grid"></div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🛒 Alış-veriş Səbəti</h2>
+                <span class="close" id="close-cart">&times;</span>
+            </div>
+            <div class="modal-body" id="cart-items">
+                <p class="empty-message">Səbətiniz boşdur!</p>
+            </div>
+            <div class="modal-footer">
+                <div class="cart-total">
+                    <span>Cəmi:</span>
+                    <span id="cart-total-price">0 AZN</span>
+                </div>
+                <button class="checkout-btn" id="checkout-btn">Sifarişi Tamamla</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Favorites Modal -->
+    <div class="modal" id="favorites-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>❤️ Sevimlilər</h2>
+                <span class="close" id="close-favorites">&times;</span>
+            </div>
+            <div class="modal-body" id="favorites-items">
+                <p class="empty-message">Hələ sevimli məhsul yoxdur!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2>Bizimlə Əlaqə</h2>
+        <div class="contact-info">
+            <p><strong>Telefon:</strong> 0557977947</p>
+            <p><strong>Instagram:</strong> @techavokado</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 TechAvokado - Kompüterlər və Aksessuarlar</p>
+    </footer>
+
+    <script src="index.js" defer></script>
+</body>
+</html>
+
+<!-- Improve the existing TechAvokado e-commerce website UI and make it more professional.
+
+TASKS:
+
+1. HERO SECTION:
+- Redesign the hero section to look modern and professional (tech e-commerce style)
+- Use better typography hierarchy (title, subtitle, CTA button)
+- Add a subtle animated or modern gradient background (not basic static gradient)
+- Make it feel like a real tech store landing page
+- Improve spacing and layout
+
+2. NAVBAR:
+- Move the search bar into the navbar
+- Make search fully functional (filters products dynamically)
+- Navbar should be modern, sticky (fixed on top while scrolling)
+- Improve design (spacing, alignment, hover effects)
+
+3. CATEGORIES SECTION:
+- Redesign categories layout (modern cards or horizontal scroll)
+- Each category must have an ICON:
+  - Computers → computer icon
+  - Mouse → mouse icon
+  - Keyboard → keyboard icon
+  - Monitors → monitor icon
+  - Accessories → generic accessories icon
+- Use simple icons (Font Awesome or SVG)
+- Categories must be clickable and filter products
+
+4. DESIGN REQUIREMENTS:
+- Make UI more professional (like a real e-commerce website)
+- Improve colors, spacing, shadows, hover effects
+- Keep it dark tech style but modern
+
+5. JAVASCRIPT:
+- Categories must filter products dynamically
+- Search must work in navbar and filter products instantly
+- Keep code clean and easy to expand
+
+IMPORTANT:
+- Do NOT break existing product database structure
+- Do NOT hardcode products in HTML
+- Everything must remain dynamic using JavaScript -->
