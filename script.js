@@ -50,24 +50,24 @@ const products = [
         category: "keyboard",
         image: "AVOKADO/skylion-k68.png"
     },
-    {
-        id: 7,
-        name: "Logitech MX Keys",
-        description: "Simsiz klaviatura, arxa işıq, ağıllı işıqlandırma, çox cihaz dəstəyi.",
-        price: "199",
-        priceNum: 199,
-        category: "keyboard",
-        image: "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=400"
-    },
-    {
-        id: 8,
-        name: "Razer BlackWidow V4",
-        description: "Oyun mexaniki klaviatura, yaşıl düymələr, RGB işıqlandırma.",
-        price: "329",
-        priceNum: 329,
-        category: "keyboard",
-        image: "https://images.unsplash.com/photo-1595225476474-87563907a212?w=400"
-    },
+    // {
+    //     id: 7,
+    //     name: "Logitech MX Keys",
+    //     description: "Simsiz klaviatura, arxa işıq, ağıllı işıqlandırma, çox cihaz dəstəyi.",
+    //     price: "199",
+    //     priceNum: 199,
+    //     category: "keyboard",
+    //     image: "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=400"
+    // },
+    // {
+    //     id: 8,
+    //     name: "Razer BlackWidow V4",
+    //     description: "Oyun mexaniki klaviatura, yaşıl düymələr, RGB işıqlandırma.",
+    //     price: "329",
+    //     priceNum: 329,
+    //     category: "keyboard",
+    //     image: "https://images.unsplash.com/photo-1595225476474-87563907a212?w=400"
+    // },
     
     // Monitorlar
     {
@@ -79,91 +79,91 @@ const products = [
         category: "monitor",
         image: "AVOKADO/msi-mag-255f-e20.png"
     },
-    {
-        id: 10,
-        name: "LG UltraGear 27\"",
-        description: "27\" oyun monitoru, 144Hz, IPS panel, HDR10 dəstəyi.",
-        price: "899",
-        priceNum: 899,
-        category: "monitor",
-        image: "https://images.unsplash.com/photo-1586210579191-33b45e38fa2c?w=400"
-    },
-    {
-        id: 11,
-        name: "Dell UltraSharp 27\"",
-        description: "27\" 4K USB-C monitor, dəqiq rəng, hündürlük tənzimləməsi.",
-        price: "1099",
-        priceNum: 1099,
-        category: "monitor",
-        image: "https://images.unsplash.com/photo-1589743537526-88a2f52f0289?w=400"
-    },
+    // {
+    //     id: 10,
+    //     name: "LG UltraGear 27\"",
+    //     description: "27\" oyun monitoru, 144Hz, IPS panel, HDR10 dəstəyi.",
+    //     price: "899",
+    //     priceNum: 899,
+    //     category: "monitor",
+    //     image: "https://images.unsplash.com/photo-1586210579191-33b45e38fa2c?w=400"
+    // },
+    // {
+    //     id: 11,
+    //     name: "Dell UltraSharp 27\"",
+    //     description: "27\" 4K USB-C monitor, dəqiq rəng, hündürlük tənzimləməsi.",
+    //     price: "1099",
+    //     priceNum: 1099,
+    //     category: "monitor",
+    //     image: "https://images.unsplash.com/photo-1589743537526-88a2f52f0289?w=400"
+    // },
     
-    // Qulaqlıqlar
-    {
-        id: 12,
-        name: "Sony WH-1000XM5",
-        description: "Simsiz səs kəsən qulaqlıq, 30 saat batareya, premium səs.",
-        price: "799",
-        priceNum: 799,
-        category: "headset",
-        image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400"
-    },
-    {
-        id: 13,
-        name: "Logitech G Pro X",
-        description: "Oyun qulaqlığı, 7.1 surround, Blue VO!CE mikrofon.",
-        price: "299",
-        priceNum: 299,
-        category: "headset",
-        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400"
-    },
-    {
-        id: 16,
-        name: "Razer BlackShark V2",
-        description: "Esports qulaqlığı, THX səs, passiv səs kəsilməsi.",
-        price: "349",
-        priceNum: 349,
-        category: "headset",
-        image: "https://images.unsplash.com/photo-1599669454699-248893623440?w=400"
-    },
+    // // Qulaqlıqlar
+    // {
+    //     id: 12,
+    //     name: "Sony WH-1000XM5",
+    //     description: "Simsiz səs kəsən qulaqlıq, 30 saat batareya, premium səs.",
+    //     price: "799",
+    //     priceNum: 799,
+    //     category: "headset",
+    //     image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400"
+    // },
+    // {
+    //     id: 13,
+    //     name: "Logitech G Pro X",
+    //     description: "Oyun qulaqlığı, 7.1 surround, Blue VO!CE mikrofon.",
+    //     price: "299",
+    //     priceNum: 299,
+    //     category: "headset",
+    //     image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400"
+    // },
+    // {
+    //     id: 16,
+    //     name: "Razer BlackShark V2",
+    //     description: "Esports qulaqlığı, THX səs, passiv səs kəsilməsi.",
+    //     price: "349",
+    //     priceNum: 349,
+    //     category: "headset",
+    //     image: "https://images.unsplash.com/photo-1599669454699-248893623440?w=400"
+    // },
     
-    // Aksessuarlar
-    {
-        id: 17,
-        name: "Webcam C920",
-        description: "Full HD 1080p veb kamera, avto fokus, stereo mikrofon.",
-        price: "149",
-        priceNum: 149,
-        category: "accessory",
-        image: "https://images.unsplash.com/photo-1587826080692-f439cd0b70da?w=400"
-    },
-    {
-        id: 18,
-        name: "USB-C Hub 7-in-1",
-        description: "Multiport adapter, HDMI, USB 3.0, SD card oxuyucu.",
-        price: "89",
-        priceNum: 89,
-        category: "accessory",
-        image: "https://images.unsplash.com/photo-1625723044792-44de16ccb4e9?w=400"
-    },
-    {
-        id: 19,
-        name: "Laptop Stand Aluminum",
-        description: "Ergonomic laptop stand, adjustable height, heat dissipation.",
-        price: "79",
-        priceNum: 79,
-        category: "accessory",
-        image: "https://images.unsplash.com/photo-1527864550417-7fd91d51a437?w=400"
-    },
-    {
-        id: 20,
-        name: "Wireless Charger Pad",
-        description: "15W fast wireless charging, compatible with all Qi devices.",
-        price: "59",
-        priceNum: 59,
-        category: "accessory",
-        image: "https://images.unsplash.com/photo-1591290619762-c588e3f5a9d8?w=400"
-    }
+    // // Aksessuarlar
+    // {
+    //     id: 17,
+    //     name: "Webcam C920",
+    //     description: "Full HD 1080p veb kamera, avto fokus, stereo mikrofon.",
+    //     price: "149",
+    //     priceNum: 149,
+    //     category: "accessory",
+    //     image: "https://images.unsplash.com/photo-1587826080692-f439cd0b70da?w=400"
+    // },
+    // {
+    //     id: 18,
+    //     name: "USB-C Hub 7-in-1",
+    //     description: "Multiport adapter, HDMI, USB 3.0, SD card oxuyucu.",
+    //     price: "89",
+    //     priceNum: 89,
+    //     category: "accessory",
+    //     image: "https://images.unsplash.com/photo-1625723044792-44de16ccb4e9?w=400"
+    // },
+    // {
+    //     id: 19,
+    //     name: "Laptop Stand Aluminum",
+    //     description: "Ergonomic laptop stand, adjustable height, heat dissipation.",
+    //     price: "79",
+    //     priceNum: 79,
+    //     category: "accessory",
+    //     image: "https://images.unsplash.com/photo-1527864550417-7fd91d51a437?w=400"
+    // },
+    // {
+    //     id: 20,
+    //     name: "Wireless Charger Pad",
+    //     description: "15W fast wireless charging, compatible with all Qi devices.",
+    //     price: "59",
+    //     priceNum: 59,
+    //     category: "accessory",
+    //     image: "https://images.unsplash.com/photo-1591290619762-c588e3f5a9d8?w=400"
+    // }
 ];
 
 // ============================================
