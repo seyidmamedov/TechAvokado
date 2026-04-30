@@ -200,7 +200,7 @@ function renderProducts(productData) {
         const isInCart = cart.some(item => item.id === product.id);
         
         card.innerHTML = `
-            <div class="card-image">
+            <div class="card-image" id="elem-id-${product.id}">
                 <img src="${product.image}" alt="${product.name}" onclick="viewProduct(${product.id})">
                 <button class="heart-btn ${isLiked ? 'liked' : ''}" data-id="${product.id}" onclick="event.stopPropagation()">
                     ${isLiked ? '❤️' : '🤍'}
@@ -271,10 +271,13 @@ function toggleLike(productId) {
         showToast('Sevimlilərə əlavə edildi ❤️', 'success');
     }
     
-   saveToStorage();
-updateCounts();
-updateFavoritesDisplay();
-updateCartDisplay(); // əlavə et (optional amma yaxşıdır)
+    saveToStorage();
+    updateCounts();
+    updateFavoritesDisplay();
+    updateCartDisplay(); // əlavə et (optional amma yaxşıdır)
+    const elem  = document.getElementById(`elem-id-${productId}`);
+    elem.querySelector(".heart-btn").innerHTML = likedProducts.has(productId) ? '❤️' : '🤍';
+    console.log(elem.querySelector(".heart-btn"));
 }
 
 // ============================================
@@ -296,7 +299,7 @@ function toggleCart(productId) {
     
     saveToStorage();
     updateCounts();
-    // renderProducts(getFilteredProducts());
+    renderProducts(getFilteredProducts());
     updateCartDisplay();
 }
 
