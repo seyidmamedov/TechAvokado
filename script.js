@@ -50,24 +50,24 @@ const products = [
         category: "keyboard",
         image: "AVOKADO/skylion-k68.png"
     },
-    // {
-    //     id: 7,
-    //     name: "Logitech MX Keys",
-    //     description: "Simsiz klaviatura, arxa işıq, ağıllı işıqlandırma, çox cihaz dəstəyi.",
-    //     price: "199",
-    //     priceNum: 199,
-    //     category: "keyboard",
-    //     image: "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?w=400"
-    // },
-    // {
-    //     id: 8,
-    //     name: "Razer BlackWidow V4",
-    //     description: "Oyun mexaniki klaviatura, yaşıl düymələr, RGB işıqlandırma.",
-    //     price: "329",
-    //     priceNum: 329,
-    //     category: "keyboard",
-    //     image: "https://images.unsplash.com/photo-1595225476474-87563907a212?w=400"
-    // },
+    {
+        id: 7,
+        name: "Atom HE-68 Pro",
+        description: "Mechanical keyboard, 68 keys, RGB lighting, retro design.",
+        price: "119",
+        priceNum: 119,
+        category: "keyboard",
+        image: "AVOKADO/atom-he68-pro-mk922-retro-beige.png"
+    },
+    {
+        id: 8,
+        name: "Atom 63 MK874 V2",
+        description: "Oyun mexaniki klaviatura,Anti-Ghosting, RGB işıqlandırma.",
+        price: "65",
+        priceNum: 65,
+        category: "keyboard",
+        image: "AVOKADO/atom63-mk874-v2-mori.png"
+    },
     
     // Monitorlar
     {
@@ -79,44 +79,25 @@ const products = [
         category: "monitor",
         image: "AVOKADO/msi-mag-255f-e20.png"
     },
-    // {
-    //     id: 10,
-    //     name: "LG UltraGear 27\"",
-    //     description: "27\" oyun monitoru, 144Hz, IPS panel, HDR10 dəstəyi.",
-    //     price: "899",
-    //     priceNum: 899,
-    //     category: "monitor",
-    //     image: "https://images.unsplash.com/photo-1586210579191-33b45e38fa2c?w=400"
-    // },
-    // {
-    //     id: 11,
-    //     name: "Dell UltraSharp 27\"",
-    //     description: "27\" 4K USB-C monitor, dəqiq rəng, hündürlük tənzimləməsi.",
-    //     price: "1099",
-    //     priceNum: 1099,
-    //     category: "monitor",
-    //     image: "https://images.unsplash.com/photo-1589743537526-88a2f52f0289?w=400"
-    // },
-    
-    // // Qulaqlıqlar
-    // {
-    //     id: 12,
-    //     name: "Sony WH-1000XM5",
-    //     description: "Simsiz səs kəsən qulaqlıq, 30 saat batareya, premium səs.",
-    //     price: "799",
-    //     priceNum: 799,
-    //     category: "headset",
-    //     image: "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400"
-    // },
-    // {
-    //     id: 13,
-    //     name: "Logitech G Pro X",
-    //     description: "Oyun qulaqlığı, 7.1 surround, Blue VO!CE mikrofon.",
-    //     price: "299",
-    //     priceNum: 299,
-    //     category: "headset",
-    //     image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400"
-    // },
+    // Qulaqlıqlar
+    {
+        id: 12,
+        name: "Baseus Bass 35-Max",
+        description: "Simsiz səs kəsən qulaqlıq, uzun batareya ömrü, premium səs.",
+        price: "70",
+        priceNum: 70,
+        category: "headset",
+        image: "AVOKADO/baseus-bass-35-max.png"
+    },
+    {
+        id: 13,
+        name: "Baseus Bowie D05",
+        description: "Simsiz qulaqlıq, uzun batareya ömrü, premium səs.",
+        price: "90",
+        priceNum: 90,
+        category: "headset",
+        image: "AVOKADO/baseus-bowie-d05.png"
+    },
     // {
     //     id: 16,
     //     name: "Razer BlackShark V2",
@@ -167,17 +148,27 @@ const products = [
 ];
 
 // ============================================
-// STATE MANAGEMENT
+// STATE MANAGEMENT (with localStorage persistence)
 // ============================================
-let cart = [];
-let favorites = [];
-let likedProducts = new Set();
+let cart = JSON.parse(localStorage.getItem('techavokado_cart')) || [];
+let favorites = JSON.parse(localStorage.getItem('techavokado_favorites')) || [];
+let likedProducts = new Set(JSON.parse(localStorage.getItem('techavokado_liked')) || []);
+let currentCategory = 'all';
+
+// ============================================
+// SAVE TO STORAGE
+// ============================================
+function saveToStorage() {
+    localStorage.setItem('techavokado_cart', JSON.stringify(cart));
+    localStorage.setItem('techavokado_favorites', JSON.stringify(favorites));
+    localStorage.setItem('techavokado_liked', JSON.stringify([...likedProducts]));
+}
 
 // ============================================
 // DOM ELEMENTS
 // ============================================
 const productList = document.getElementById('product-list');
-const searchInput = document.getElementById('search');
+const searchInput = document.getElementById('navbar-search');
 const categoryFilter = document.getElementById('category-filter');
 const cartCount = document.getElementById('cart-count');
 const favCount = document.getElementById('fav-count');
@@ -203,21 +194,22 @@ function renderProducts(productData) {
     productData.forEach(product => {
         const card = document.createElement('div');
         card.className = 'card';
+        card.style.cursor = 'pointer';
         
         const isLiked = likedProducts.has(product.id);
         const isInCart = cart.some(item => item.id === product.id);
         
         card.innerHTML = `
             <div class="card-image">
-                <img src="${product.image}" alt="${product.name}">
-                <button class="heart-btn ${isLiked ? 'liked' : ''}" data-id="${product.id}">
+                <img src="${product.image}" alt="${product.name}" onclick="viewProduct(${product.id})">
+                <button class="heart-btn ${isLiked ? 'liked' : ''}" data-id="${product.id}" onclick="event.stopPropagation()">
                     ${isLiked ? '❤️' : '🤍'}
                 </button>
-                <button class="add-to-cart-btn ${isInCart ? 'added' : ''}" data-id="${product.id}">
-                    ${isInCart ? '✓ Added to Cart' : '+ Add to Cart'}
+                <button class="add-to-cart-btn ${isInCart ? 'added' : ''}" data-id="${product.id}" onclick="event.stopPropagation()">
+                    ${isInCart ? '✓ Səbətdə' : '+ Səbətə Əlavə'}
                 </button>
             </div>
-            <div class="card-content">
+            <div class="card-content" onclick="viewProduct(${product.id})">
                 <h3>${product.name}</h3>
                 <p class="description">${product.description}</p>
                 <div class="info">
@@ -232,6 +224,13 @@ function renderProducts(productData) {
     
     // Add event listeners to buttons
     attachCardEventListeners();
+}
+
+// ============================================
+// VIEW PRODUCT (Navigate to detail page)
+// ============================================
+function viewProduct(productId) {
+    window.location.href = `product.htm?id=${productId}`;
 }
 
 // ============================================
@@ -264,16 +263,18 @@ function toggleLike(productId) {
     
     if (likedProducts.has(productId)) {
         likedProducts.delete(productId);
-        // Remove from favorites if there
         favorites = favorites.filter(f => f.id !== productId);
+        showToast('Sevimlilərdən çıxarıldı', 'removed');
     } else {
         likedProducts.add(productId);
         favorites.push(product);
+        showToast('Sevimlilərə əlavə edildi ❤️', 'success');
     }
     
-    updateCounts();
-    renderProducts(getFilteredProducts());
-    updateFavoritesDisplay();
+   saveToStorage();
+updateCounts();
+updateFavoritesDisplay();
+updateCartDisplay(); // əlavə et (optional amma yaxşıdır)
 }
 
 // ============================================
@@ -287,12 +288,15 @@ function toggleCart(productId) {
     
     if (existingItem) {
         cart = cart.filter(item => item.id !== productId);
+        showToast('Məhsul səbətdən çıxarıldı', 'removed');
     } else {
         cart.push({ ...product, quantity: 1 });
+        showToast('Məhsul səbətə əlavə edildi ✓', 'success');
     }
     
+    saveToStorage();
     updateCounts();
-    renderProducts(getFilteredProducts());
+    // renderProducts(getFilteredProducts());
     updateCartDisplay();
 }
 
@@ -301,9 +305,45 @@ function toggleCart(productId) {
 // ============================================
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
+    saveToStorage();
     updateCounts();
-    renderProducts(getFilteredProducts());
+    // renderProducts(getFilteredProducts());
     updateCartDisplay();
+}
+
+// ============================================
+// TOAST NOTIFICATIONS
+// ============================================
+function showToast(message, type = 'success') {
+    // Remove existing toasts
+    const existingToasts = document.querySelectorAll('.toast');
+    existingToasts.forEach(toast => toast.remove());
+    
+    let container = document.getElementById('toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        document.body.appendChild(container);
+    }
+    
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `
+        <span class="toast-icon">${type === 'success' ? '✓' : '✕'}</span>
+        <span class="toast-message">${message}</span>
+    `;
+    container.appendChild(toast);
+    
+    // Trigger animation
+    requestAnimationFrame(() => {
+        toast.classList.add('show');
+    });
+    
+    // Remove after delay
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
 }
 
 // ============================================
@@ -379,8 +419,8 @@ function updateFavoritesDisplay() {
 // FILTER PRODUCTS
 // ============================================
 function getFilteredProducts() {
-    const searchTerm = searchInput.value.toLowerCase();
-    const category = categoryFilter.value;
+    const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+    const category = currentCategory;
     
     return products.filter(product => {
         const matchesSearch = product.name.toLowerCase().includes(searchTerm) || 
@@ -393,6 +433,8 @@ function getFilteredProducts() {
 
 function filterProducts() {
     renderProducts(getFilteredProducts());
+    // Re-init scroll animation after filtering
+    setTimeout(initScrollAnimation, 100);
 }
 
 // ============================================
@@ -487,6 +529,8 @@ function initNavigation() {
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts(products);
     initNavigation();
+    initScrollAnimation();
+    initCategoryCards();
     
     // Search and filter listeners
     searchInput.addEventListener('input', filterProducts);
@@ -500,3 +544,66 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// ============================================
+// SCROLL ANIMATION
+// ============================================
+function initScrollAnimation() {
+    const cards = document.querySelectorAll('.card');
+    
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Add staggered delay based on index within visible set
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 100);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+    
+    cards.forEach(card => {
+        observer.observe(card);
+    });
+}
+
+// ============================================
+// CATEGORY CARDS
+// ============================================
+function initCategoryCards() {
+    const categoryCards = document.querySelectorAll('.category-card');
+    
+    categoryCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const category = card.dataset.category;
+            
+            // Update active state
+            categoryCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            
+            // Filter products
+            currentCategory = category;
+            filterProducts();
+            
+            // Scroll to products
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+    
+    // Add "All" click handler to hero button
+    const heroBtn = document.querySelector('.btn-secondary');
+    if (heroBtn) {
+        heroBtn.addEventListener('click', () => {
+            categoryCards.forEach(c => c.classList.remove('active'));
+            currentCategory = 'all';
+            filterProducts();
+        });
+    }
+}
