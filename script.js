@@ -586,21 +586,27 @@ function initCategoryCards() {
     categoryCards.forEach(card => {
         card.addEventListener('click', () => {
             const category = card.dataset.category;
-            
-            // Update active state
+
+            // ✅ If same card clicked again → reset
+            if (card.classList.contains('active')) {
+                card.classList.remove('active');
+                currentCategory = 'all';
+                filterProducts();
+                return;
+            }
+
+            // Normal selection
             categoryCards.forEach(c => c.classList.remove('active'));
             card.classList.add('active');
-            
-            // Filter products
+
             currentCategory = category;
             filterProducts();
-            
-            // Scroll to products
+
             document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
         });
     });
     
-    // Add "All" click handler to hero button
+    // Hero button stays fine
     const heroBtn = document.querySelector('.btn-secondary');
     if (heroBtn) {
         heroBtn.addEventListener('click', () => {
