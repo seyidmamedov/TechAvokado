@@ -988,16 +988,91 @@ nav a:hover, nav a.active {
 /* ============================================
    FOOTER
 ============================================ */
-footer {
-    text-align: center;
-    padding: 30px;
-    background: var(--bg-dark);
-    color: var(--text-muted);
-    border-top: 1px solid var(--border);
+.footer {
+    background: #0f172a;
+    color: #cbd5f5;
+    padding: 60px 20px 20px;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-footer p {
-    font-size: 15px;
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+}
+
+.footer-logo {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.footer-section h4 {
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.footer-section p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #cbd5f5;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: var(--primary);
+}
+
+.newsletter-form {
+    display: flex;
+    margin-top: 10px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 6px 0 0 6px;
+}
+
+.newsletter-form button {
+    padding: 10px 15px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    cursor: pointer;
+    border-radius: 0 6px 6px 0;
+}
+.footer-bottom {
+    border-top: 1px solid #1e293b;
+    margin-top: 40px;
+    padding-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+.footer-section {
+    transition: transform 0.3s ease;
+}
+.footer-section:hover {
+    transform: translateY(-5px);
+}
+.footer {
+    box-shadow: 0 -5px 30px rgba(0,0,0,0.3);
 }
 
 /* ============================================
